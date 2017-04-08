@@ -1,19 +1,24 @@
 # Bit-Remote-Scope - https://bitsrc.io
 Remote bit scope to test and develop bit
 
-Requirments: 
-  1. attach ssh keys to container 
+###INFO:
 
+    Remote scope is created in path: /tmp/scope
 
 ###DEVELOPMENT:
-    
-    docker run --rm --name bit -p 3000:3000  --volume <path to bit code>:/bit-bin  --volume ~/.ssh:/root/.ssh --env 'DEVELOPMENT=true'  teambit/bit
+
+    docker run --rm --name bit -d -P  --volume <path to bit code>:/bit-bin  --volume ~/.ssh/id_rsa.pub:/tmp/id_rsa.pub --env 'DEVELOPMENT=true'  <image name>
 
 ###Remote scope with latest stabel version: 
 
-docker run --rm --name bit -p 3000:3000 --volume ~/.ssh:/root/.ssh teambit/bit
+    docker run --rm --name bit -d -P  --volume ~/.ssh/id_rsa.pub:/tmp/id_rsa.pub <image name>
+
+
+### RUN 
+    docker port bit 22
+
+Then use port to add remote scope
+
+    bit remote add ssh://root@localhost:<port>:/tmp/scope
       
-
-### add remote scope from workspace 
-
-    bit remote add ssh://root@localhost:3000:/scope
+    
