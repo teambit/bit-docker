@@ -43,3 +43,8 @@ Then use port to add remote scope
     bit remote add ssh://root@localhost:<port>:/tmp/scope -g
       
     
+Build image:
+============
+
+    docker build . -t bit
+    
