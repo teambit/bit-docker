@@ -18,9 +18,7 @@ scoping mechanism to easily find and reuse components created by you or by other
 Getting started
 ===============
 
-Bit can be installed either on your computer for building components or
-on servers for running them. To get started, [check out the installation
-instructions in the
+Create a virtual set of reusable code components to be used as building blocks across your repositories and applications. To get started, [check out the installation.instructions in the
 documentation](https://teambit.github.io/bit/installation.html).
 
 
