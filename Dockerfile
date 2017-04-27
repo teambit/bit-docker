@@ -7,7 +7,7 @@ ENV BITPATH=/bit-bin
 #Install ssh and bit dependencies
 RUN apt-get update 
 RUN apt-get upgrade -y 
-RUN apt-get install -y openssh-server curl && mkdir /var/run/sshd
+RUN apt-get install -y vim nano openssh-server curl && mkdir /var/run/sshd
 RUN apt-get install -y  apt-transport-https gcc make python g++
 
 # Install latest (stable) Bit version
