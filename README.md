@@ -14,7 +14,6 @@ is super simple.
 scoping mechanism to easily find and reuse components created by you or by others.
 
 
-
 Getting started
 ===============
 
@@ -25,26 +24,31 @@ documentation](https://teambit.github.io/bit/installation.html).
 Run remote scope with latest bit version:
 =================================
 
-    docker run --rm --name bit -d -P  --volume ~/.ssh/id_rsa.pub:/tmp/id_rsa.pub bitteam/bit-docker
+`docker run --rm --name bit -d -P  --volume ~/.ssh/id_rsa.pub:/tmp/id_rsa.pub bitteam/bit-docker`
 
 
 developing bit and testing:
 ===========================
 
-    docker run --rm --name bit -d -P  --volume <path to bit code>:/bit-bin  --volume ~/.ssh/id_rsa.pub:/tmp/id_rsa.pub --env 'DEVELOPMENT=true' bitteam/bit-docker
+`docker run --rm --name bit -d -P  --volume <path to bit code>:/bit-bin  --volume ~/.ssh/id_rsa.pub:/tmp/id_rsa.pub --env 'DEVELOPMENT=true' bitteam/bit-docker`
 
 
 Get working port of docker container:
 =====================================
-    docker port bit 22
+`docker port bit 22`
 
 Then use port to add remote scope
 
-    bit remote add ssh://root@localhost:<port>:/tmp/scope -g
+`bit remote add ssh://root@localhost:<port>:/tmp/scope -g`
       
-    
+
+Kill container
+==============
+
+`docker kill bit`
+
 Build image:
 ============
 
-    docker build . -t bit
+`docker build . -t bit`
     
