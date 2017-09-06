@@ -26,12 +26,12 @@ Run remote scope with latest bit version:
 
 `docker run --rm --name bit -d -P  --volume ~/.ssh/id_rsa.pub:/tmp/id_rsa.pub bitteam/bit-docker`
 
+`bit remote add ssh://root@localhost:<port>:/tmp/scope -g`
 
 developing bit and testing:
 ===========================
 
 `docker run --rm --name bit -d -P  --volume <path to bit code>:/bit-bin  --volume ~/.ssh/id_rsa.pub:/tmp/id_rsa.pub --env 'DEVELOPMENT=true' bitteam/bit-docker`
-
 
 Get working port of docker container:
 =====================================
@@ -39,7 +39,28 @@ Get working port of docker container:
 
 Then use port to add remote scope
 
-`bit remote add ssh://root@localhost:<port>:/tmp/scope -g`
+Advance use of the container:
+=====================================
+In the following commands you should replace container-id with bit (which is the name of the container)
+
+### Run bash on the container
+`docker exec -it <container-id> /bin/bash`
+
+### Copy your own ssh key to the container
+
+relevant in case when you are going to export a component which need to resolve the dependencies against private scopes in the hub
+
+Copy your ssh key into the container (from outside bash)
+
+`docker cp ~/.ssh/id_rsa <container id>:/root/.ssh/`
+
+on the container bash:
+
+`bit config ssh_key_file /root/.ssh/id_rsa`
+
+### Show bit logs on the container
+
+`tail -f /root/Library/Caches/Bit/logs/debug.log`
       
 
 Kill container
