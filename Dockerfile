@@ -1,4 +1,4 @@
-FROM node
+FROM node:6.11.4-slim
 
 
 ENV  DEVELOPMENT=false
@@ -9,6 +9,7 @@ RUN apt-get update
 RUN apt-get upgrade -y 
 RUN apt-get install -y vim nano openssh-server curl && mkdir /var/run/sshd
 RUN apt-get install -y  apt-transport-https gcc make python g++
+RUN apt-get install git -y 
 
 # Install latest (stable) Bit version
 #RUN curl https://bitsrc.jfrog.io/bitsrc/api/gpg/key/public |  apt-key add -
