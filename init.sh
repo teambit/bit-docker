@@ -1,11 +1,11 @@
 #!/bin/bash
 set -x
 if [ $DEVELOPMENT = true ]; then
-    apt-get remove bit -y
+    yarn global remove bit-bin
     ln -sf $BITPATH/bin/bit.js /usr/local/bin/bit
 else
     apt-get update
-    apt-get install bit -y
+    yarn global add bit-bin
 fi
 
 cat /tmp/id_rsa.pub >> /root/.ssh/authorized_keys 
