@@ -1,11 +1,11 @@
 #!/bin/bash
 set -x
 if [ $DEVELOPMENT = true ]; then
-    yarn global remove bit-bin
+    npm uninstall -g bit-bin
     ln -sf $BITPATH/bin/bit.js /usr/local/bin/bit
 else
     apt-get update
-    yarn global add bit-bin
+    npm install -g bit-bin
 fi
 
 cat /tmp/id_rsa.pub >> /root/.ssh/authorized_keys 
