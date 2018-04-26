@@ -18,14 +18,13 @@ RUN npm install -g yarn@1.3.2
 #RUN apt-get update
 #RUN apt-get install bit -y
 RUN npm install -g bit-bin
-
+RUN bit config set analytics_reporting false
+RUN bit config set error_reporting false
 RUN mkdir -p /root/.ssh
 RUN mkdir /tmp/scope
 WORKDIR /tmp/scope
 ADD init.sh .
 RUN chmod +x init.sh
-RUN bit config set analytics_reporting false
-RUN bit config set error_reporting false
 
 EXPOSE 22
 CMD  ["/tmp/scope/init.sh"]
