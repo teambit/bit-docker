@@ -1,4 +1,4 @@
-FROM node:6.11.4-slim
+FROM node:10.16.0-slim
 
 
 ENV  DEVELOPMENT=false
