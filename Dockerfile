@@ -20,6 +20,7 @@ RUN npm install -g yarn@1.3.2
 RUN npm install -g bit-bin
 RUN bit config set analytics_reporting false
 RUN bit config set error_reporting false
+RUN bit config set no_warnings true
 RUN mkdir -p /root/.ssh
 RUN mkdir /tmp/scope
 WORKDIR /tmp/scope
