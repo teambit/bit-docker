@@ -24,14 +24,14 @@ documentation](https://teambit.github.io/bit/installation.html).
 Run remote scope with latest bit version:
 =================================
 
-`docker run --rm --name bit -d -P  --volume ~/.ssh/id_rsa.pub:/tmp/id_rsa.pub bitteam/bit-docker`
+`docker run --rm --name bit -d -P  --volume ~/.ssh/id_rsa.pub:/tmp/id_rsa.pub bitcli/bit-docker`
 
 `bit remote add ssh://root@localhost:<port>:/tmp/scope -g`
 
 developing bit and testing:
 ===========================
 
-`docker run --rm --name bit -d -P  --volume <path to bit code>:/bit-bin  --volume ~/.ssh/id_rsa.pub:/tmp/id_rsa.pub --env 'DEVELOPMENT=true' bitteam/bit-docker`
+`docker run --rm --name bit -d -P  --volume <path to bit code>:/bit-bin  --volume ~/.ssh/id_rsa.pub:/tmp/id_rsa.pub --env 'DEVELOPMENT=true' bitcli/bit-docker`
 
 Get working port of docker container:
 =====================================
