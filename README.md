@@ -20,11 +20,12 @@ A dockerfile setup to run your own [Bit](https://www.github.com/teambit/bit) ser
     `docker port bit 2200`
 
 > you can replace `bit` with any other `<container id>`.
+> you can replace `2200` with any other `<port>`.
 
 ## Working with a self-hosted Bit bare server
 
-- Add the Bit bare server as a remote  
-    `bit remote add ssh://root@localhost:2200:/tmp/scope -g`
+- Add the Bit bare server as a remote (`<hostname>` can be `localhost` or remote hostname if running container in a remote server)  
+    `bit remote add ssh://root@<hostname>:2200:/tmp/scope -g`
 - Access Bash and run commands on the Bit server container  
     `docker exec -it bit /bin/bash`
 - See Bit logs from the container  
@@ -40,7 +41,7 @@ Copy your ssh key into the container (run command from your machine's bash)
 
 `docker cp ~/.ssh/id_rsa bit:/root/.ssh/`
 
-on the container bash:
+in the container bash:
 
 `bit config ssh_key_file /root/.ssh/id_rsa`
 
