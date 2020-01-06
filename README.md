@@ -33,9 +33,7 @@ A dockerfile setup to run your own [Bit](https://www.github.com/teambit/bit) ser
 - kill the container  
     `docker kill bit`
 
-### Copy your own ssh key to the container
-
-relevant in case when you are going to export a component which need to resolve the dependencies against private scopes in bit.dev
+### Copy another SSH key to the container
 
 Copy your ssh key into the container (run command from your machine's bash)
 
