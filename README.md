@@ -16,16 +16,15 @@ A dockerfile setup to run your own [Bit](https://www.github.com/teambit/bit) ser
     `docker build . -t bit`
 1. Setup a docker container to run a Bit bare server  
     `docker run --rm --name bit -d -P  --volume ~/.ssh/id_rsa.pub:/tmp/id_rsa.pub bitcli/bit-docker`
-1. Configure post for the Bit server  
-    `docker port bit 2200`
+1. Configure port for the Bit server  
+    `docker port bit 22`
 
 > you can replace `bit` with any other `<container id>`.
-> you can replace `2200` with any other `<port>`.
 
 ## Working with a self-hosted Bit bare server
 
 - Add the Bit bare server as a remote (`<hostname>` can be `localhost` or remote hostname if running container in a remote server)  
-    `bit remote add ssh://root@<hostname>:2200:/tmp/scope -g`
+    `bit remote add ssh://root@<hostname>:22:/tmp/scope -g`
 - Access Bash and run commands on the Bit server container  
     `docker exec -it bit /bin/bash`
 - See Bit logs from the container  
