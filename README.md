@@ -42,7 +42,7 @@ in the container bash:
 
 `bit config ssh_key_file /root/.ssh/id_rsa`
 
-## Run Bit server from a local build
+## Run Bit server from a local build of Bit (for maintainers)
 
 To run a local container for development:
 
