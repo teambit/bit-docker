@@ -1,17 +1,9 @@
 # Bit-docker
 
 A dockerfile setup to run your own [Bit](https://www.github.com/teambit/bit) server.  
-If you want to setup a bare-bone Bit remote server without this dockerfile, please refer to [this guide]](https://docs.bit.dev/docs/bit-server).
-
-## What's inside
-
-- All prerequisite.
-- Bit installation and server setup.
-- SSH authentication setup.
+If you want to setup a bare-bone Bit remote server without Docker, please refer to [this guide](https://docs.bit.dev/docs/bit-server).
 
 ## Setting up a Bit server using docker
-
-> note - you need to have docker installed on your machine.
 
 1. Clone this repository.  
     `git clone git@github.com:teambit/bit-docker.git`
@@ -57,7 +49,7 @@ tail -f /root/Library/Caches/Bit/logs/debug.log
 
 ### Permissions errors on import/export
 
-Bit uses SSH as a communication protocol. This dockerfile automates the SSH setup by mounting your [user account SSH keys](https://github.com/teambit/bit-docker/blob/master/Dockerfile#L24).  
+Bit uses SSH for networking. This setup [mounts your user account SSH keys](https://github.com/teambit/bit-docker/blob/master/Dockerfile#L24).  
 To manually set up authentication, or authenticate another key:
 
 1. Copy a public key to the container.  
