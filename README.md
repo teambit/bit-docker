@@ -1,48 +1,73 @@
 # Bit-docker
 
-A dockerfile setup to run your own [Bit](https://www.github.com/teambit/bit) server.
+A dockerfile setup to run your own [Bit](https://www.github.com/teambit/bit) server.  
+If you want to setup a bare-bone Bit remote server without this dockerfile, please refer to [this guide]](https://docs.bit.dev/docs/bit-server).
 
 ## What's inside
 
-- Prerequisite (git, ssh, node).
-- Bit installation.
-- SSH daemon setup.
-- Bit bare server instantiation.
+- All prerequisite.
+- Bit installation and server setup.
+- SSH authentication setup.
 
-## Instruction
+## Setting up a Bit server using docker
 
-1. Clone this repository
-1. Build image  
+> note - you need to have docker installed on your machine.
+
+1. Clone this repository.
+    `git clone git@github.com:teambit/bit-docker.git`
+1. Build image.
     `docker build . -t bit`
-1. Setup a docker container to run a Bit bare server  
+1. Start server.
     `docker run --rm --name bit -d -P  --volume ~/.ssh/id_rsa.pub:/tmp/id_rsa.pub bitcli/bit-docker`
-1. Configure port for the Bit server  
+1. Configure SSH port.
     `docker port bit 22`
-
-> you can replace `bit` with any other `<container id>`.
-
-## Working with a self-hosted Bit bare server
-
-- Add the Bit bare server as a remote (`<hostname>` can be `localhost` or remote hostname if running container in a remote server)  
-    `bit remote add ssh://root@<hostname>:22:/tmp/scope -g`
-- Access Bash and run commands on the Bit server container  
-    `docker exec -it bit /bin/bash`
-- See Bit logs from the container  
-    `tail -f /root/Library/Caches/Bit/logs/debug.log`
-- kill the container  
+1. Stop server.
     `docker kill bit`
 
-### Copy another SSH key to the container
+## Working with a Bit server
 
-Copy your ssh key into the container (run command from your machine's bash)
+For more information, see [this guide](https://docs.bit.dev/docs/bit-server#working-with-remote-scopes).
 
-`docker cp ~/.ssh/id_rsa bit:/root/.ssh/`
+1. Configure workspace to use the server.
+    `bit remote add ssh://root@<hostname>:22:/tmp/scope -g`
+1. Export components to a Bit server.
+    `bit export scope`
+1. Import components from a Bit server.
+    `bit import scope.<component-name>`
 
-in the container bash:
+## Troubleshooting
 
-`bit config ssh_key_file /root/.ssh/id_rsa`
+### Run bash on the container
 
-## Run Bit server from a local build of Bit (for maintainers)
+When you need to run any command on the Bit server, you first need to get bash on the container:
+
+```sh
+docker exec -it bit /bin/bash
+```
+
+Now each command you run, runs on the server.
+
+### Tail server logs
+
+To run the `tail` command and get the server's logs, you should first [get bash on the container](#run-bash-on-the-container). Then `tail` Bit's log:
+
+```sh
+tail -f /root/Library/Caches/Bit/logs/debug.log
+```
+
+### Permissions errors on import/export
+
+Bit uses SSH as a communication protocol. This dockerfile automates the SSH setup by mounting your [user account SSH keys](https://github.com/teambit/bit-docker/blob/master/Dockerfile#L24).  
+To manually set up authentication, or authenticate another key:
+
+1. Copy a public key to the container.
+    `docker cp ~/.ssh/id_rsa bit:/root/.ssh/`
+1. Run bash on the container.
+    `docker exec -it bit /bin/bash`
+1. Configure the container's SSH daemon with the new key (run from container's bash).
+    `bit config ssh_key_file /root/.ssh/id_rsa`
+
+## For maintainers - Run Bit server from a local build
 
 To run a local container for development:
 
