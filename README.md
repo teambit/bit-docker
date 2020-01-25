@@ -3,30 +3,15 @@
 A dockerfile setup to run your own [Bit](https://www.github.com/teambit/bit) server.  
 If you want to setup a bare-bone Bit remote server without Docker, please refer to [this guide](https://docs.bit.dev/docs/bit-server).
 
-## Setting up a Bit server using docker
+## Getting started
 
 1. Clone this repository.  
-    ```sh
-    $ git clone git@github.com:teambit/bit-docker.git
-    ```
-1. Build image.  
+1. Build image and run server.  
     ```sh
     $ docker build . -t bit
-    ```
-1. Start server and configure SSH port.  
-    ```sh
     $ docker run --rm --name bit -d -P  --volume ~/.ssh/id_rsa.pub:/tmp/id_rsa.pub bitcli/bit-docker
     $ docker port bit 22
     ```
-1. Stop server.  
-    ```sh
-    $ docker kill bit
-    ```
-
-## Working with a Bit server
-
-For more information, see [this guide](https://docs.bit.dev/docs/bit-server#working-with-remote-scopes).
-
 1. Configure workspace to use the server.  
     ```sh
     $ bit remote add ssh://root@<hostname>:22:/tmp/scope -g
@@ -38,6 +23,10 @@ For more information, see [this guide](https://docs.bit.dev/docs/bit-server#work
 1. Import components from a Bit server.  
     ```sh
     $ bit import scope.<component-name>
+    ````
+1. Stop server  
+    ```sh
+    $ docker kill bit
     ```
 
 ## Troubleshooting
@@ -46,13 +35,13 @@ For more information, see [this guide](https://docs.bit.dev/docs/bit-server#work
 
 - See if container is running.  
     ```sh
-    $ docker ps --all
+    $ docker ps --all | grep bit
     ```
-- Make sure you have setup the SSH port correctly.  
+- Make the SSH port is configured correctly.  
     ```sh
     $ docker port bit 22
     ```
-- See that your server is properly configured for your workspace.  
+- See that your server is configured for your workspace.  
     ```sh
     $ bit remote
     ```
