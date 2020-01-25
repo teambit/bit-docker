@@ -61,12 +61,11 @@ To manually set up authentication, or authenticate another key:
 
 ## For maintainers - Run Bit server from a local build
 
-To run a local container for development:
+After building Bit from source code, run this command:
 
-1. Clone the [Bit repository](https://www.github.com/teambit/bit).
-1. Build the exec according to Bit's build instructions.
-1. Run the following command  
-    `docker run --rm --name bit -d -P  --volume <path to git-clone of bit>:/bit-bin  --volume ~/.ssh/id_rsa.pub:/tmp/id_rsa.pub --env 'DEVELOPMENT=true' bitcli/bit-docker`
+```sh
+docker run --rm --name bit -d -P  --volume <path to git-clone of bit>:/bit-bin  --volume ~/.ssh/id_rsa.pub:/tmp/id_rsa.pub --env 'DEVELOPMENT=true' bitcli/bit-docker
+```
 
 ## Contributing
 
