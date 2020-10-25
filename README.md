@@ -6,19 +6,21 @@ If you want to setup a bare-bone Bit remote server without Docker, please refer 
 ## Getting started
 
 1. Clone this repository.  
+1. Edit `scope.json` with your name (legacy, shoudl be replaced soon)
+1. Edit `scope.jsonc` with your description
 1. Build image and run server.  
     ```sh
-    $ docker build . -t bit
-    $ docker run --rm --name bit -d -P  --volume ~/.ssh/id_rsa.pub:/tmp/id_rsa.pub bitcli/bit-docker
-    $ docker port bit 22
+    $ docker build . -t harmony-scope
+    $ docker run --rm --name my-scope -d -p 3000:3000 harmony-scope
     ```
 1. Configure workspace to use the server.  
     ```sh
-    $ bit remote add ssh://root@<hostname>:22:/tmp/scope -g
+    $ bit remote add http://localhost:3000
     ```
+1. Add scope to `workspace.jsonc`
 1. Export components to a Bit server.  
     ```sh
-    $ bit export scope
+    $ bit export
     ```
 1. Import components from a Bit server.  
     ```sh
@@ -37,31 +39,13 @@ If you want to setup a bare-bone Bit remote server without Docker, please refer 
     ```sh
     $ docker ps --all | grep bit
     ```
-- Make the SSH port is configured correctly.  
+- Make sure the HTTP port is configured correctly.  
     ```sh
-    $ docker port bit 22
+    $ docker port bit 3000
     ```
 - See that your server is configured for your workspace.  
     ```sh
     $ bit remote
-    ```
-    
-### Unable to import/export
-
-Bit uses SSH for networking. This setup [mounts your user account SSH keys](https://github.com/teambit/bit-docker/blob/master/Dockerfile#L24).  
-To manually set up authentication, or authenticate another key:
-
-1. Copy a public key to the container.  
-    ```sh
-    $ docker cp ~/.ssh/id_rsa bit:/root/.ssh/
-    ```
-1. Run bash on the container.  
-    ```sh
-    $ docker exec -it bit /bin/bash
-    ```
-1. Configure the container's SSH daemon with the new key (run from container's bash).  
-    ```sh
-    $ bit config ssh_key_file /root/.ssh/id_rsa
     ```
 
 ### Run bash on the container
@@ -80,14 +64,6 @@ To run the `tail` command and get the server's logs, you should first [get bash 
 
 ```sh
 $ tail -f /root/Library/Caches/Bit/logs/debug.log
-```
-
-## For maintainers - Run server from a local build
-
-After building Bit from source code, run this command:
-
-```sh
-$ docker run --rm --name bit -d -P  --volume <path to git-clone of bit>:/bit-bin  --volume ~/.ssh/id_rsa.pub:/tmp/id_rsa.pub --env 'DEVELOPMENT=true' bitcli/bit-docker
 ```
 
 ## Contributing
