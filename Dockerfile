@@ -25,6 +25,7 @@ RUN apt-get install git -y
 
 # Install latest (stable) Bit version
 RUN yarn global add @teambit/bit --unsafe-perm=true
+RUN ln -s /usr/local/bin/bbit /usr/local/bin/bit
 RUN bbit config set analytics_reporting false
 RUN bbit config set error_reporting false
 RUN bbit config set no_warnings true
@@ -34,5 +35,5 @@ WORKDIR /tmp/scope
 ADD init.sh .
 RUN chmod +x init.sh
 
-EXPOSE 22
+EXPOSE 3000
 CMD  ["/tmp/scope/init.sh"]
