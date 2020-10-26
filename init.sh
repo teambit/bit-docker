@@ -1,7 +1,7 @@
 #!/bin/bash
 set -x
 apt-get update
-yarn install -g @teambit/bitß
+yarn global add @teambit/bitß
 
 bit init --bare
 

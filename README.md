@@ -13,6 +13,7 @@ If you want to setup a bare-bone Bit remote server without Docker, please refer 
     $ docker build . -t harmony-scope
     $ docker run --rm --name my-scope -d -p 3000:3000 harmony-scope
     ```
+    Note - the server will take a few minutes to spin up, so localhost:3000 wont be available immediately
 1. Configure workspace to use the server.  
     ```sh
     $ bit remote add http://localhost:3000
