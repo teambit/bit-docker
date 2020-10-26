@@ -1,6 +1,5 @@
 # Setup container
 FROM node:current-slim
-EXPOSE 3000
 
 # Install ssh and bit dependencies
 RUN apt-get update 
@@ -21,9 +20,12 @@ RUN bit config set no_warnings true
 RUN mkdir /tmp/scope
 WORKDIR /tmp/scope
 
-# Initialize scope
-RUN bit init --bare
-COPY scope.jsonc /tmp/scope
-COPY scope.json /tmp/scope
+# Setting up scope
+ADD init.sh .
+RUN chmod +x init.sh
+ADD scope.jsonc .
+ADD scope.json .
 
-CMD [ "bit", "start" ]
+# Run server
+EXPOSE 3000
+CMD ["/tmp/scope/init.sh"]
