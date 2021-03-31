@@ -3,6 +3,6 @@ set -x
 apt-get update
 yarn global add @teambit/bitß
 
-bit init --bare
+bit init --bare --harmony
 
 bit start
