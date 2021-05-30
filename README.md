@@ -1,7 +1,6 @@
 # Bit-docker
 
 A dockerfile setup to run your own [Bit](https://www.github.com/teambit/bit) server.  
-If you want to setup a bare-bone Bit remote server without Docker, please refer to [this guide](https://docs.bit.dev/docs/bit-server).
 
 ## Getting started
 
