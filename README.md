@@ -5,7 +5,7 @@ A dockerfile setup to run your own [Bit](https://www.github.com/teambit/bit) ser
 ## Getting started
 
 1. Clone this repository.  
-1. Edit `scope.json` with your name (legacy, shoudl be replaced soon)
+1. Edit `scope.json` with your name (legacy, should be replaced soon)
 1. Edit `scope.jsonc` with your description
 1. Build image and run server.  
     ```sh
