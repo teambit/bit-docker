@@ -1,5 +1,7 @@
 # Bit-docker
 
+*This repo is only used for legacy (not harmony) scopes. for harmony please use https://github.com/teambit/bit/blob/master/scripts/docker-teambit-bit/README.md*
+
 A dockerfile setup to run your own [Bit](https://www.github.com/teambit/bit) server.  
 If you want to setup a bare-bone Bit remote server without Docker, please refer to [this guide](https://docs.bit.dev/docs/bit-server).
 
